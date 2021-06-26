@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             x:Class="SolidWallpapers.MainPage"
+             x:Name="this"
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout BindingContext="{x:Reference colorPicker}" 
+                 BackgroundColor="{Binding SelectedColor}"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand">
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="Screen_Tapped"/>
+        </StackLayout.GestureRecognizers>
+
+        <StackLayout BindingContext="{x:Reference this}" 
+                     IsVisible="{Binding IsPickerVisible}">
+            <colorpicker:ColorWheel x:Name="colorPicker" 
+                                SelectedColor="#000" 
+                                WidthRequest="300" />
+            <Label Text="Double tap on screen to show/hide selector" 
+                   TextColor="#000"
+                   FontSize="20"
+                   Background="#FFF"
+                   HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+        
+    </StackLayout>
+</ContentPage>
